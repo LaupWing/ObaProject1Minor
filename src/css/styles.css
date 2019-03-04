@@ -1,1 +1,79 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+body{
+    background-repeat: no-repeat!important;
+    background-size: cover!important;
+    width: 100vw;
+    height: 100vh;
+}
 
+svg{
+    width: 100px;
+}
+path{
+    fill:rgba(255,255,255,.75);
+}
+.centering-v-h{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container{
+    width: 700px;
+    /* height: 500px; */
+}
+.genre{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.genre-wrapper{
+    width: 33%;
+    margin: 20px 0;
+}
+.container-genre{
+    width: 170px;
+    height: 180px;
+    background: rgba(255,255,255,.5);
+    border-radius: 10px;
+    border: white 2px solid;
+    border-bottom: 10px solid white;
+    position: relative;
+    cursor: pointer;
+}
+.container-genre:hover > .genre-name{
+    height: 20px;
+}
+.genre-name{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: white;
+    text-align: center;
+    height: 0;
+    transition: .2s;
+    overflow: hidden;
+}
+h1#landing{
+  /* text-align: center; */
+  color: white;
+  font-size: 40px;
+  font-weight: 400;  
+}
+h1#landing span{
+    background: rgba(255,255,255,.9);
+    padding: 5px 8px;
+    color:black;
+    transition: .5s;
+}
+h1#landing span.hoverh1{
+    font-weight: 800;
+    background: white;
+}
