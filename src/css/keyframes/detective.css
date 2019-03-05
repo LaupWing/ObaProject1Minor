@@ -1,27 +1,30 @@
 #Detective #rechtervoet > path,
 #Detective #linkervoet > path{
-    opacity: 1;
-    fill: 
+    opacity: 0;
 }
-
-#Detective #vergroot-inner #oog-lid{
+#Detective #linkervoet > path.anim{
+    animation: linkervoet infinite 5s;
+}
+#Detective #rechtervoet > path.anim{
+    animation: rechtervoet infinite 5s;
+}
+#Detective #vergroot-inner #oog-lid.anim{
     fill: #FFE0BD;
-    z-index: 10;
 }
-#Detective #vergroot-inner #oogwit{
+#Detective #vergroot-inner #oogwit.anim{
     fill: white;
 }
-#Detective #vergroot-inner #oog-inner{
+#Detective #vergroot-inner #oog-inner.anim{
     fill: lightblue;
     animation: oogInner 3s infinite;
 }
-#Detective #vergroot-border >path{
+#Detective #vergroot-border > path.anim{
     fill: black;
 }
-#Detective #vergroot-border #pupil{
+#Detective #vergroot-border #pupil.anim{
     animation: pupilAnim 3s infinite;
 }
-#Detective #vergroot-border #oog-inner-kader{
+#Detective #vergroot-border #oog-inner-kader.anim{
     animation: oogInner 3s infinite;
 }
 
@@ -46,5 +49,55 @@
     }
     100%{
         transform: translate(0,0);
+    }
+}
+
+@keyframes linkervoet{
+    0%{
+        opacity: 1;
+        transform: translate(20px, -20px);
+    }
+    33%{
+        opacity: 0;
+    }
+    55%{
+        transform: translate(70px, -80px);
+        opacity: 1;
+    }
+    66%{
+        opacity: 0;
+    }
+    78%{
+        transform: translate(120px,-130px);
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        transform: translate(170px,-180px);
+    }
+}
+
+@keyframes rechtervoet{
+    0%{
+        opacity: 0;
+        transform: translate(30px, -30px);
+    }
+    33%{
+        opacity: 1;
+        transform: translate(50px, -60px);
+    }
+    55%{
+        opacity: 0;
+    }
+    66%{
+        opacity: 1;
+        transform: translate(100px,-110px);
+    }
+    78%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+        transform: translate(150px,-160px);
     }
 }

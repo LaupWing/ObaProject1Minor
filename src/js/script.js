@@ -92,7 +92,9 @@ function classToggle(){
     this.querySelectorAll("svg path").forEach(path=>{
         path.classList.toggle("anim")
     })
-    // document.querySelector(this).classList.toggle(name)
+    if(this.querySelector("ellipse")){
+        this.querySelector("ellipse").classList.toggle("anim")
+    }
 }
 
 

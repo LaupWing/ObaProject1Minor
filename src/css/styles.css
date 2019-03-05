@@ -1,6 +1,9 @@
 @import url("./keyframes/romatiek.css");
 @import url("./keyframes/adventure.css");
 @import url("./keyframes/detective.css");
+@import url("./keyframes/thriller.css");
+@import url("./keyframes/oorlog.css");
+@import url("./keyframes/humor.css");
 
 *{
     box-sizing: border-box;
@@ -35,12 +38,23 @@ path{
     flex-direction: column;
     align-items: center;
 }
+
 .container-genre.Avontuur{
     background: lightblue;
 }
 .container-genre.Romantiek{
     background: red;
 }
+.container-genre.Detective{
+    background:brown;
+}
+.container-genre.Thriller{
+    background:black;
+}
+.container-genre.Oorlog{
+    background:#EE6203;
+}
+ 
 .container{
     width: 700px;
     /* height: 500px; */

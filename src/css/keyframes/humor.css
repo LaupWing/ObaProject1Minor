@@ -1,0 +1,11 @@
+#Humor #Mask-inner > path{
+    fill: white;
+}
+#Humor #Mask-border #Mond-kader,
+#Humor #Mask-border #Linker-oog,
+#Humor #Mask-border #Recter-oog{
+    fill: black;
+}
+#Humor #Mask-inner #Mond-inner{
+    fill: black;
+}

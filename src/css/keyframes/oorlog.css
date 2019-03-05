@@ -1,0 +1,90 @@
+#Oorlog #Upper-cloud.anim{
+    fill: #FFD203;
+    animation: upperCloud 5s infinite;
+    transform-origin: center;
+}
+#Oorlog #Mid-Cloud.anim{
+    fill: #FFD203;
+    transform-origin: center;
+    animation: midCloud 5s infinite;
+}
+#Oorlog #Bottom-cloud.anim{
+    fill: #EA482E;
+    animation: bottomCloud 5s infinite;
+    transform-origin: center;
+}
+
+#Oorlog #Upper-mid > path.anim,
+#Oorlog #Under-mid > path.anim{
+    fill: #EA482E;
+}
+
+#Oorlog #Upper-mid >path.anim{
+    animation: UpMid 5s infinite;
+    transform-origin: center;
+}
+#Oorlog #Under-mid >path.anim{
+    animation: UnderMid 5s infinite;
+    transform-origin: center;
+}
+
+#Oorlog #Upper-mid > path:nth-of-type(1).anim,
+#Oorlog #Under-mid > path:nth-of-type(2).anim{
+    fill:#FFD203;
+}
+@keyframes upperCloud{
+    0%{
+        transform: scale(1);
+    }
+    90%{
+        transform: scale(1.5); 
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+@keyframes midCloud{
+    0%{
+        transform: scale(1);
+    }
+    90%{
+        transform: scale(2.5,1);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+@keyframes bottomCloud{
+    0%{
+        transform: scale(1);
+    }
+    90%{
+        transform: scale(.1,1);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+@keyframes UpMid{
+    0%{
+        transform: scale(1);
+    }
+    90%{
+        transform: scale(0.2,2);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+@keyframes UnderMid{
+    0%{
+        transform: scale(1);
+    }
+    90%{
+        transform: scale(0.2,1);
+    }
+    100%{
+        transform: scale(1);
+    }
+    
+}
