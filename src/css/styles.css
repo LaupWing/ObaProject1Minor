@@ -1,3 +1,7 @@
+@import url("./keyframes/romatiek.css");
+@import url("./keyframes/adventure.css");
+@import url("./keyframes/detective.css");
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -12,7 +16,15 @@ body{
 }
 
 svg{
-    width: 100px;
+    width: 120px;
+}
+g.svg-border>path,
+.svg-border{
+    fill: white;
+}
+g.svg-inner > path,
+.svg-inner{
+    fill: transparent;
 }
 path{
     fill:rgba(255,255,255,.75);
@@ -23,7 +35,12 @@ path{
     flex-direction: column;
     align-items: center;
 }
-
+.container-genre.Avontuur{
+    background: lightblue;
+}
+.container-genre.Romantiek{
+    background: red;
+}
 .container{
     width: 700px;
     /* height: 500px; */
@@ -47,9 +64,13 @@ path{
     border-bottom: 10px solid white;
     position: relative;
     cursor: pointer;
+    transition: 1s;
 }
 .container-genre:hover > .genre-name{
     height: 20px;
+}
+.container-genre:hover{
+    transform: scale(1.1);
 }
 .genre-name{
     position: absolute;
@@ -65,13 +86,15 @@ h1#landing{
   /* text-align: center; */
   color: white;
   font-size: 40px;
-  font-weight: 400;  
+  font-weight: 400; 
+  margin-bottom: 20px; 
 }
 h1#landing span{
     background: rgba(255,255,255,.9);
     padding: 5px 8px;
     color:black;
     transition: .5s;
+    border-radius: 3px;
 }
 h1#landing span.hoverh1{
     font-weight: 800;

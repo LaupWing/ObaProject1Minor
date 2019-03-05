@@ -81,14 +81,20 @@ function setBg(url){
 const genreContainer = document.querySelectorAll(".container-genre")
 genreContainer.forEach(item=>addEvents(item))
 function addEvents(item){
-    item.addEventListener("mouseover", h1Toggle)
-    item.addEventListener("mouseout", h1Toggle)
+    item.addEventListener("mouseover", classToggle)
+    item.addEventListener("mouseout", classToggle)
 }
 
 
-function h1Toggle(){
-    document.querySelector("#landing .firstLetter").classList.toggle("hoverh1")
+function classToggle(){
+    console.log(this.querySelector("svg").id)
+    this.classList.toggle(this.querySelector("svg").id)
+    this.querySelectorAll("svg path").forEach(path=>{
+        path.classList.toggle("anim")
+    })
+    // document.querySelector(this).classList.toggle(name)
 }
+
 
 checkLocalStorage("Background", checkDay)
 

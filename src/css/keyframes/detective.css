@@ -1,0 +1,50 @@
+#Detective #rechtervoet > path,
+#Detective #linkervoet > path{
+    opacity: 1;
+    fill: 
+}
+
+#Detective #vergroot-inner #oog-lid{
+    fill: #FFE0BD;
+    z-index: 10;
+}
+#Detective #vergroot-inner #oogwit{
+    fill: white;
+}
+#Detective #vergroot-inner #oog-inner{
+    fill: lightblue;
+    animation: oogInner 3s infinite;
+}
+#Detective #vergroot-border >path{
+    fill: black;
+}
+#Detective #vergroot-border #pupil{
+    animation: pupilAnim 3s infinite;
+}
+#Detective #vergroot-border #oog-inner-kader{
+    animation: oogInner 3s infinite;
+}
+
+@keyframes oogInner{
+    0%{
+        transform: translate(0,0);
+    }
+    50%{
+        transform: translate(-10px, 0) rotate(-1.5deg);
+    }
+    100%{
+        transform: translate(0,0);
+    }
+}
+
+@keyframes pupilAnim{
+    0%{
+        transform: translate(0,0);
+    }
+    50%{
+        transform: translate(-13px,-5px);
+    }
+    100%{
+        transform: translate(0,0);
+    }
+}
