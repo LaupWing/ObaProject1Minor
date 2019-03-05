@@ -1,11 +1,43 @@
-#Humor #Mask-inner > path{
+#Humor #Mask-inner > path.anim{
     fill: white;
 }
-#Humor #Mask-border #Mond-kader,
-#Humor #Mask-border #Linker-oog,
-#Humor #Mask-border #Recter-oog{
+#Humor #Mask-border #Mond-kader.anim,
+#Humor #Mask-border #Linker-oog.anim,
+#Humor #Mask-border #Recter-oog.anim{
     fill: black;
 }
-#Humor #Mask-inner #Mond-inner{
+#Humor #Mask-inner #Mond-inner.anim{
     fill: black;
+}
+#Humor #Mask-inner #Mond-inner.anim,
+#Humor #Mask-border #Mond-kader.anim{
+    transform-origin: center;
+    animation: laugh infinite 2s;
+}
+#Humor #Mask-border #Linker-oog.anim,
+#Humor #Mask-border #Recter-oog.anim{
+    animation: eyes infinite 2s;
+    transform-origin: center;
+}
+@keyframes laugh{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2,.7);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+@keyframes eyes{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1,.8);
+    }
+    100%{
+        transform: scale(1);
+    }
 }
