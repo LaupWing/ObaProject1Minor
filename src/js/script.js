@@ -68,15 +68,15 @@ function checkLocalStorage(item, callback, bgSetting){
         return
     }
     console.log("LocalStorage aanwezig")
-    callback(storage)
+    callback(storage, bgSetting)
 }
 
 function checkDay(obj, bgSetting){
-    console.log()
+    console.log(bgSetting)
     const day = new Date().getDate()
     if(obj.date === day){
         console.log("Tzelfde dag, geen nieuwe bgImg")
-        setBg(obj.url)
+        setBg(obj.url, bgSetting.searchterm)
     }else{
         console.log("Niet tzelfde dag, nieuwe bgImg")
         getBg(bgSetting.searchterm, bgSetting.storage)
@@ -85,39 +85,45 @@ function checkDay(obj, bgSetting){
 
 document.querySelector("a")
 
-function setBg(url){
+function setBg(url, searchterm){
+    console.log(searchterm)
     const coloring = [
         {
-            page: "Landingpage",
+            page: "library",
             color: "rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)"
         },
         {
-            page: "Romantiek",
-            color: "rgba(255, 1, 126, 0.7), rgba(255, 1, 126, 0.7)"
+            page: "Romantic",
+            color: "rgba(255, 1, 126, 0.3), rgba(255, 1, 126, 0.3)"
         },
         {
-            page: "Oorlog",
-            color: "rgba(238, 101, 6, 0.7), rgba(238, 101, 6, 0.7)"
+            page: "War",
+            color: "rgba(238, 101, 6, 0.3), rgba(238, 101, 6, 0.3)"
         },
         {
             page: "Thriller",
-            color: "rgba(179, 27, 26, 0.7), rgba(179, 27, 26, 0.7)"
+            color: "rgba(179, 27, 26, 0.4), rgba(179, 27, 26, 0.4)"
         },
         {
-            page: "Avontuur",
-            color: "rgba(144, 208, 236, 0.7), rgba(144, 208, 236, 0.7)"
+            page: "Adventure",
+            color: "rgba(144, 208, 236, 0.3), rgba(144, 208, 236, 0.3)"
         },
         {
             page: "Humor",
-            color: "rgba(253, 255, 118, 0.7), rgba(253, 255, 118, 0.7)"
+            color: "rgba(253, 255, 118, 0.3), rgba(253, 255, 118, 0.3)"
         },
         {
             page: "Detective",
-            color: "rgba(201, 169, 116,0.7), rgba(201, 169, 116,0.7)"
+            color: "rgba(201, 169, 116,0.3), rgba(201, 169, 116,0.3)"
         },
 
     ]
-    document.body.style.background = `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${url})`
+    const pageGenre = coloring.filter(function(x){
+        return searchterm === x.page
+    })
+    const color = pageGenre[0].color
+    console.log(pageGenre)
+    document.body.style.background = `linear-gradient(${color}),url(${url})`
 }
 
 const genreContainer = document.querySelectorAll(".container-genre")
