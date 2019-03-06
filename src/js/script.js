@@ -1,32 +1,9 @@
 import {API} from "../../modules/OBA-wrapper-master/js/index.js"
-
-
-// localStorage.clear();
-
-// const call = (async function(url="search/karin&facet=type(book){100}"){
-//     const api = new API({
-//         key: "1e19898c87464e239192c8bfe422f280"
-//     });
-//     // const stream = await api.createStream("search/wouter");
-    
-//     // stream
-//     // .pipe(stringify)
-//     // .pipe(console.log)
-//     // .catch(console.error);
-//     // requests.then(responses => {
-//     //     console.log(responses)
-//     //   });
-    
-//     const iterator = await api.createIterator(url);
-//     for await (const response of iterator) {
-//         console.log(response)
-//     }
-// })()
 async function init() {
     const api = new API({
       key: "1e19898c87464e239192c8bfe422f280"
     })
-    const stream = await api.createStream("search/banaan{1000}")
+    const stream = await api.createStream("search/book{1000}")
     return  stream
                 .pipe(toJSON)
                     .all()
@@ -42,19 +19,6 @@ function toJSON(stream) {
     return stream
 }
 
-function jwzz(){
-    // console.log(init())
-    const test = init()
-    console.log()
-    test.then(x=>{
-        console.log(x)
-        const cleanData = x.filter(cutUndefined)
-        // console.log(cleanData)/
-        const filteredArray = cleanData.filter(filterArray)
-        console.log(filteredArray)
-    })
-}
-
 function cutUndefined(item){
     return item !== undefined
 }
@@ -62,7 +26,23 @@ function cutUndefined(item){
 function filterArray(item){
     return item.genres[0] !== undefined 
 }
-
+function testData(){
+    init()
+        .then(array=>{
+            const cleanData = array.filter(cutUndefined)
+            const filtered = cleanData.filter(filterArray)
+            localStorage.setItem("bookData", JSON.stringify(filtered))
+        })
+}
+function getGenre(){
+    const local = JSON.parse(localStorage.getItem("bookData"))
+    const mapped = local.map((x)=>{
+        return x.genres
+    })
+    console.log(mapped)
+}   
+getGenre()
+// testData()
 // jwzz()
 // console.log(init())
 
@@ -106,10 +86,38 @@ function checkDay(obj, bgSetting){
 document.querySelector("a")
 
 function setBg(url){
-    document.body.style.background = `linear-gradient(
-                rgba(0, 0, 0, 0.7), 
-                rgba(0, 0, 0, 0.7)
-              ),url(${url})`
+    const coloring = [
+        {
+            page: "Landingpage",
+            color: "rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)"
+        },
+        {
+            page: "Romantiek",
+            color: "rgba(255, 1, 126, 0.7), rgba(255, 1, 126, 0.7)"
+        },
+        {
+            page: "Oorlog",
+            color: "rgba(238, 101, 6, 0.7), rgba(238, 101, 6, 0.7)"
+        },
+        {
+            page: "Thriller",
+            color: "rgba(179, 27, 26, 0.7), rgba(179, 27, 26, 0.7)"
+        },
+        {
+            page: "Avontuur",
+            color: "rgba(144, 208, 236, 0.7), rgba(144, 208, 236, 0.7)"
+        },
+        {
+            page: "Humor",
+            color: "rgba(253, 255, 118, 0.7), rgba(253, 255, 118, 0.7)"
+        },
+        {
+            page: "Detective",
+            color: "rgba(201, 169, 116,0.7), rgba(201, 169, 116,0.7)"
+        },
+
+    ]
+    document.body.style.background = `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${url})`
 }
 
 const genreContainer = document.querySelectorAll(".container-genre")
@@ -157,10 +165,10 @@ function renderGenre(){
             <option value="">Dit Jaar</option>
         </select>
         <div class="tops-wrapper">
-        <i class="fas fa-angle-left"></i>
+        <i id="terug" class="fas fa-angle-left"></i>
             <div class="tops">
             </div>
-        <i class="fas fa-angle-right"></i>
+        <i id="volgende" class="fas fa-angle-right"></i>
         </div>
     `
     genresContainer.insertAdjacentHTML( 'beforeend', newElement )
@@ -168,13 +176,19 @@ function renderGenre(){
 }
 
 function addImagesTops(){
+    if(!localStorage.getItem("bookData")){
+        console.log("heeft het niet")
+    }else{
+        console.log("heeft het wel")
+    }
     init()
     .then(x=>{
             const tops = document.querySelector(".tops")
             console.log("addingImages")
             const cleanData = x.filter(cutUndefined)
             console.log(cleanData)
-            for(let i=20; i<30; i++){
+            const array =[]
+            for(let i=0; i<15; i++){
                 console.log("itereren")
                 const newElement =
                 `
@@ -183,15 +197,26 @@ function addImagesTops(){
                     </div>
                 `
                 console.log(newElement)
+                array.push(cleanData[i])
                 tops.insertAdjacentHTML("beforeend", newElement)
             }
+            // localStorage.setItem("bookData", JSON.stringify(array))
             highlight()
+            browseClick()
         })
 }
 
-function highlight(){
+let number = 0;
+function highlight(number=0){
     const imgwrapper = document.querySelectorAll(".img-wrapper")
-    imgwrapper[0].classList.add("highlighted")
+    imgwrapper[number].classList.add("highlighted")
+}
+
+function removeClass(){
+    const imgwrapper = document.querySelectorAll(".img-wrapper")
+    imgwrapper.forEach(x=>{
+        x.classList.remove("highlighted")
+    })
 }
 
 function clearContainer(){
@@ -201,6 +226,35 @@ function clearContainer(){
         genres.removeChild(genres.firstChild)
     }
 }
+function browseClick(){
+    const volgende = document.querySelector("#volgende")
+    const terug = document.querySelector("#terug")
+    // document.querySelectorAll("i").forEach(i=>{
+    //     i.scrollIntoView({
+    //         behavior: 'smooth'
+    //     })
+    // })
+    document.querySelector(".tops-wrapper").scrollIntoView({
+                behavior: 'smooth'
+            })
+    volgende.addEventListener("click", function(){
+        document.querySelector(".tops-wrapper").scrollBy(170,0)
+        removeClass()
+        if(number<14){
+            number++
+        }
+        highlight(number)
+    })
+    terug.addEventListener("click", function(){
+        document.querySelector(".tops-wrapper").scrollBy(-170,0)
+        removeClass()
+        if(number>0){
+            number--
+        }
+        highlight(number)
+    })
+}
+
 
 
 
