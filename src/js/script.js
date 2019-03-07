@@ -3,7 +3,7 @@ async function init() {
     const api = new API({
       key: "1e19898c87464e239192c8bfe422f280"
     })
-    const stream = await api.createStream("search/book{1000}")
+    const stream = await api.createStream("search/book{100}")
     return  stream
                 .pipe(toJSON)
                     .all()
@@ -41,7 +41,7 @@ function getGenre(){
     })
     console.log(mapped)
 }   
-getGenre()
+// getGenre()
 // testData()
 // jwzz()
 // console.log(init())
@@ -56,7 +56,7 @@ function getBg(subject, storage){
             }
             console.log(bgImage)
             localStorage.setItem(storage, JSON.stringify(bgImage))
-            setBg(bgImage.url)
+            setBg(bgImage.url,subject)
         })
 }
 
@@ -182,39 +182,55 @@ function renderGenre(){
 }
 
 function addImagesTops(){
-    if(!localStorage.getItem("bookData")){
-        console.log("heeft het niet")
-    }else{
-        console.log("heeft het wel")
-    }
-    init()
-    .then(x=>{
-            const tops = document.querySelector(".tops")
-            console.log("addingImages")
-            const cleanData = x.filter(cutUndefined)
-            console.log(cleanData)
-            const array =[]
-            for(let i=0; i<15; i++){
-                console.log("itereren")
-                const newElement =
-                `
-                    <div class="img-wrapper"> 
-                        <img src="${cleanData[i].images[0]}"> </img>
-                    </div>
-                `
-                console.log(newElement)
-                array.push(cleanData[i])
-                tops.insertAdjacentHTML("beforeend", newElement)
-            }
-            // localStorage.setItem("bookData", JSON.stringify(array))
-            highlight()
-            browseClick()
+    if(localStorage.getItem("bookData")){
+        const data = JSON.parse(localStorage.getItem("bookData"))
+        const tops = document.querySelector(".tops")
+        console.log(data)
+        data.forEach(x=>{
+            console.log(x)
+            const newElement =
+            `
+                <div class="img-wrapper"> 
+                    <img src="${x.images[0]}"> </img>
+                </div>
+            `
+            tops.insertAdjacentHTML("beforeend", newElement)
         })
+        highlight()
+        browseClick()
+    }else{
+        init()
+        .then(x=>{
+                const tops = document.querySelector(".tops")
+                const cleanData = x.filter(cutUndefined)
+                console.log(cleanData)
+    
+                console.log("addingImages")
+                const array =[]
+                for(let i=0; i<15; i++){
+                    console.log("itereren")
+                    const newElement =
+                    `
+                        <div class="img-wrapper"> 
+                            <img src="${cleanData[i].images[0]}"> </img>
+                        </div>
+                    `
+                    console.log(newElement)
+                    array.push(cleanData[i])
+                    tops.insertAdjacentHTML("beforeend", newElement)
+                }
+                localStorage.setItem("bookData", JSON.stringify(array))
+                highlight()
+                browseClick()
+            })
+    }
 }
 
 let number = 0;
 function highlight(number=0){
+    console.log(number)
     const imgwrapper = document.querySelectorAll(".img-wrapper")
+    console.log(imgwrapper[number])
     imgwrapper[number].classList.add("highlighted")
 }
 
@@ -240,9 +256,6 @@ function browseClick(){
     //         behavior: 'smooth'
     //     })
     // })
-    document.querySelector(".tops-wrapper").scrollIntoView({
-                behavior: 'smooth'
-            })
     volgende.addEventListener("click", function(){
         document.querySelector(".tops-wrapper").scrollBy(170,0)
         removeClass()
