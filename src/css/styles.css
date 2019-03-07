@@ -83,16 +83,14 @@ path{
 .tops-wrapper{
     overflow-x: scroll;
     display: flex;
-    /* justify-content: space-around; */
-    /* background: purple; */
-    /* align-items: center; */
+    /* margin: 20px 0; */
     max-width: 100%;
-    /* padding-left: 50px; */
-    height: 270px;
+    height: 300px;
     position: relative;
 }
 .tops-wrapper::-webkit-scrollbar {
-    width: 10px;
+    /* width: 10px; */
+    display: none;
 }
 i{
     color: white;
@@ -109,7 +107,6 @@ i{
 }
 i:hover{
     background: rgba(255,255,255,.5);
-
 }
 i:first-of-type{
     left: 0;
@@ -119,21 +116,97 @@ i:last-of-type{
     right: 0;
     border-radius: 0 20px 20px 0; 
 }
+
+.bookInfo{
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+}
+
+.mainInfo{
+    background: rgba(144, 208, 236, 0.7);
+    width: 50%;
+    height: 220px;
+}
+
+#summary{
+    margin-left: 40px;
+    width: 50%;
+    color: white;
+}
+#bookTitle p,
+#bookTitle h2{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 16px;
+}
+#bookTitle h2{
+    width: 80%;
+    justify-content: center;
+}
+#bookTitle p{
+    justify-content: center;
+    width: 20%;
+    color: white;
+    border: white solid 1px;
+}
+#bookTitle{
+    display: flex;
+    align-items: center;
+}
+#schrijver{
+    border-top: white solid 1px;
+    height: 40px;
+    display: flex;
+}
+#schrijver > p{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+#schrijver > p:first-of-type{
+    width: 20%;
+    color:white;
+}
+#schrijver .schrijver{
+    width: 80%;
+}
+#stars{
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    padding: 20px;
+}
+#stars .beoordeling{
+    display: flex;
+    justify-content: center;
+}
+#stars .reviews{
+    justify-content: center;
+    display: flex;
+    margin-top: 10px;
+    color: white;
+}
 img{
     transition: .5s;
     margin:0 20px;
-    height: 180px;
-    width: 130px;
-    opacity: .2;
+    height: 150px;
+    width: 100px;
+    opacity: .35;
 }
 #datum{
+    margin: 10px;
     width: 200px;
     padding: 5px;
 }
 .highlighted{
     transition: .5s;
     opacity: 1;
-    transform: scale(1.3);
+    transform: scale(1.4);
 }
 .highlighted img{
     box-shadow: 0px 0px 25px 0px rgba(255,255,255,.8);
@@ -196,4 +269,29 @@ h1#landing span{
 h1#landing span.hoverh1{
     font-weight: 800;
     background: white;
+}
+
+/* Diffrent Mian info color */
+.mainInfo.Romantiek{
+    background: rgba(255, 1, 126, 0.7);
+}
+.mainInfo.Avontuur{
+    background: rgba(144, 208, 236, 0.7);
+}
+.mainInfo.Detective{
+    background: rgba(201, 169, 116,0.7);
+}
+.mainInfo.Oorlog{
+    background: rgba(238, 101, 6, 0.7);
+}
+.mainInfo.Humor{
+    background: rgba(253, 255, 118, 0.7);
+}
+.mainInfo.Thriller{
+    background: rgba(179, 27, 26, 0.7);
+}
+.mainInfo.Humor p,
+.mainInfo.Humor #schrijver p,
+.mainInfo.Humor #bookTitle p{
+    color: black;
 }

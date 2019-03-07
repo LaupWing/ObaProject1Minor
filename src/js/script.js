@@ -122,9 +122,14 @@ function setBg(url, searchterm){
         return searchterm === x.page
     })
     const color = pageGenre[0].color
-    console.log(pageGenre)
     document.body.style.background = `linear-gradient(${color}),url(${url})`
 }
+
+
+
+
+
+
 
 const genreContainer = document.querySelectorAll(".container-genre")
 genreContainer.forEach(item=>addEvents(item))
@@ -135,9 +140,9 @@ function addEvents(item){
 }
 
 function handleclick(){
-    const genre = this.querySelector("svg").classList.value
-    console.log(genre)
-    checkLocalStorage(`${genre}BG`, checkDay, {storage:`${genre}BG`, searchterm:`${genre}`})
+    const genre2 = this.querySelector("svg").classList.value
+    console.log(genre2)
+    checkLocalStorage(`${genre2}BG`, checkDay, {storage:`${genre2}BG`, searchterm:`${genre2}`})
 }
 
 function classToggle(){
@@ -155,6 +160,7 @@ window.addEventListener("hashchange", renderGenre)
 function renderGenre(){
     clearContainer()
     const genre = window.location.hash.slice(1)
+    console.log(genre)
     const firstLetter = genre.slice(0,1)
     const restGenre = genre.slice(1)
     const genresContainer = document.querySelector(".genres")
@@ -176,8 +182,37 @@ function renderGenre(){
             </div>
         <i id="volgende" class="fas fa-angle-right"></i>
         </div>
+        <div class="bookInfo">
+            <div class="mainInfo">
+                <div id="bookTitle">
+                    <p>Title</p>
+                    <h2 class="title"></h2>
+                </div>
+                <div id="schrijver">
+                    <p>Schrijver</p>
+                    <p class="schrijver"></p>
+                </div>
+                <div id="stars">
+                    <div class="beoordeling">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="reviews">
+                        <p>57 reviews</p>
+                    </div>
+                </div>
+            </div>
+            <div id="summary">
+                <h2>Samenvatting</h2>
+                <p class="samenvatting"></p>
+            </div>
+        </div>
     `
     genresContainer.insertAdjacentHTML( 'beforeend', newElement )
+    document.querySelector(".mainInfo").classList.add(`${genre}`)
     addImagesTops()
 }
 
@@ -185,9 +220,7 @@ function addImagesTops(){
     if(localStorage.getItem("bookData")){
         const data = JSON.parse(localStorage.getItem("bookData"))
         const tops = document.querySelector(".tops")
-        console.log(data)
         data.forEach(x=>{
-            console.log(x)
             const newElement =
             `
                 <div class="img-wrapper"> 
@@ -198,6 +231,7 @@ function addImagesTops(){
         })
         highlight()
         browseClick()
+        setInfo()
     }else{
         init()
         .then(x=>{
@@ -208,14 +242,12 @@ function addImagesTops(){
                 console.log("addingImages")
                 const array =[]
                 for(let i=0; i<15; i++){
-                    console.log("itereren")
                     const newElement =
                     `
                         <div class="img-wrapper"> 
                             <img src="${cleanData[i].images[0]}"> </img>
                         </div>
                     `
-                    console.log(newElement)
                     array.push(cleanData[i])
                     tops.insertAdjacentHTML("beforeend", newElement)
                 }
@@ -228,9 +260,7 @@ function addImagesTops(){
 
 let number = 0;
 function highlight(number=0){
-    console.log(number)
     const imgwrapper = document.querySelectorAll(".img-wrapper")
-    console.log(imgwrapper[number])
     imgwrapper[number].classList.add("highlighted")
 }
 
@@ -239,6 +269,26 @@ function removeClass(){
     imgwrapper.forEach(x=>{
         x.classList.remove("highlighted")
     })
+}
+
+function setInfo(){
+    const data = JSON.parse(localStorage.getItem("bookData"))
+    const book = data[number]
+    const authorFull = book.author.fullname
+    const fullTitle = book.title.full.split("/") 
+    const title = fullTitle[0].trim()
+
+    let author = ""
+    if(authorFull.indexOf("undefined" !== -1)){
+        author = authorFull.replace("undefined","")
+    }else{
+        author = authorFull
+    }
+    console.log(book)
+    console.log(author.trim())
+    document.querySelector(".samenvatting").innerHTML = book.summary
+    document.querySelector("#bookTitle .title").innerHTML = title
+    document.querySelector("#schrijver .schrijver").innerHTML = author.trim()
 }
 
 function clearContainer(){
@@ -257,19 +307,21 @@ function browseClick(){
     //     })
     // })
     volgende.addEventListener("click", function(){
-        document.querySelector(".tops-wrapper").scrollBy(170,0)
+        document.querySelector(".tops-wrapper").scrollBy(140,0)
         removeClass()
         if(number<14){
             number++
         }
+        setInfo()
         highlight(number)
     })
     terug.addEventListener("click", function(){
-        document.querySelector(".tops-wrapper").scrollBy(-170,0)
+        document.querySelector(".tops-wrapper").scrollBy(-140,0)
         removeClass()
         if(number>0){
             number--
         }
+        setInfo()
         highlight(number)
     })
 }
