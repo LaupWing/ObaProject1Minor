@@ -1,0 +1,29 @@
+{
+  "name": "project-1-1819-master",
+  "version": "1.0.0",
+  "description": "Oba server side",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LaupWing/ObaProject1Minor.git"
+  },
+  "keywords": [
+    "Oba",
+    "api"
+  ],
+  "author": "Laup Wing",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LaupWing/ObaProject1Minor/issues"
+  },
+  "homepage": "https://github.com/LaupWing/ObaProject1Minor#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10"
+  }
+}

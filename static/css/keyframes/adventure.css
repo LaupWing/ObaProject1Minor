@@ -1,0 +1,48 @@
+#Avontuur #Wolk1 > path,
+#Avontuur #Wolk2 > path{
+    opacity: 0;
+}
+#Kompas #kompas-wijzer{
+    transform-origin: center;
+}
+#Avontuur #Wolk1 >path.anim,
+#Avontuur #Wolk2 >path.anim{
+    opacity: 1;
+    animation: wolken infinite 5s;
+}
+#Avontuur #kompas-kader.anim{
+    fill: #f2cc61;
+}
+#Kompas #kompas-wijzer.anim{
+    fill: black;
+}
+#Kompas #kompas-fill.anim{
+    fill: white;
+}
+#Kompas #kompas-inner.anim{
+    fill: #f2cc61;
+}
+#Kompas #kompas-wijzer.anim{
+    animation: kompasWijzer 5s infinite;
+}
+
+@keyframes kompasWijzer{
+    0%{
+        transform: rotate(0);
+    }
+    50%{
+        transform: rotate(180deg);
+    }
+    100%{
+        transform: rotate(0)
+    }
+}
+
+@keyframes wolken{
+    0%{
+        transform: translate(-300px,0)
+    }
+    100%{
+        transform: translate(300px,0)
+    }
+}

@@ -1,0 +1,53 @@
+#Romantiek #kader,
+#Romantiek #Hart-big-inner,
+#Romantiek #Hart-small-inner{
+    transform-origin: center;
+}
+#Romantiek #kader.anim{
+   animation: hearthBorder 1s infinite;
+}
+#Romantiek #Hart-big-inner.anim{
+    animation: hearthFill 1s infinite;
+}
+#Romantiek #Hart-small-inner.anim{
+    animation: hearthFill 1s infinite;
+}
+
+.pauzeAnim{
+    animation-direction: reverse;
+}
+
+@keyframes hearthBorder{
+    0%{
+        transform: scale(1);
+        fill: white;
+    }
+    50%{
+        transform: scale(1.2);
+        fill: pink;
+    }
+    100%{
+        transform: scale(1);
+        fill: white;
+    }
+}
+
+@keyframes hearthFill{
+    0%{
+        transform: scale(1);
+        fill: pink;
+    }
+    50%{
+        transform: scale(1.2);
+        fill: pink;
+    }
+    100%{
+         transform: scale(1);
+        fill: pink;
+    }
+}
+
+
+
+
+
